@@ -1,0 +1,17 @@
+/* 全局样式表 */
+html,body{
+  height: 100%;
+}
+body,h1,h2,h3,h4,h5,p{
+  margin: 0;
+  padding: 0;
+}
+li,ul,ol{
+  list-style: none;
+}
+.title_text{
+  font-size:18px;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
+  color:rgba(0,0,0,1);
+}
