@@ -9,9 +9,83 @@ body,h1,h2,h3,h4,h5,p{
 li,ul,ol{
   list-style: none;
 }
+/*二级标题*/
 .title_text{
   font-size:18px;
   font-family:PingFangSC-Semibold,PingFang SC;
   font-weight:600;
   color:rgba(0,0,0,1);
 }
+/*页面默认为屏幕高度*/
+.pages{
+   height: 100%;
+  position: relative;
+}
+/*隐藏滚动条的x/y滚动元素*/
+.scrollY{
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+.scrollX{
+  overflow-X: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+/*单行文本不换行省略号结尾*/
+.nowrap{
+  white-space: nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+}
+.break-all{
+  word-break:break-all;
+}
+/*常用左中右卡片布局*/
+.x_box{
+  display: flex;
+  align-items: center;
+  .center{
+    flex: 1;
+  }
+}
+/*竖短线*/
+.vertical_short_line{
+  width: 1px;
+  background-color: #F1F1F1;
+  height: 26px;
+}
+/*弹性盒子*/
+.flex_parent{
+  display: flex;
+}
+.flex_column{
+  display: flex;
+  flex-direction: column;
+}
+.flex_centerY{
+  display: flex;
+  align-items: center;
+}
+.flex_centerX{
+  display: flex;
+  justify-content: center;
+}
+.flex_center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex_1{
+  flex: 1;
+}
+/*元素点击active样式*/
+.click_active{
+  &:active{
+    background-color: #eee;
+    opacity: 0.5;
+  }
+}
+

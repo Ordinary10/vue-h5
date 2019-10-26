@@ -1,0 +1,154 @@
+<template>
+    <div class="pages message-page">
+        <topBar :config="config"></topBar>
+        <van-list class="van-list" v-show="$route.name==='Message'">
+          <van-cell>
+            <div class="list-cell flex_centerY click_active" @click="goBack('chat')">
+              <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/ltxx.png" alt="">
+              <div class="center flex_1">
+                聊天消息
+                <span class="message-tag">11</span>
+              </div>
+              <img class="right" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/next4.png" alt="">
+            </div>
+          </van-cell>
+          <van-cell>
+            <div class="list-cell flex_centerY click_active" @click="goBack('circle')">
+              <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/qzxx.png" alt="">
+              <div class="center flex_1">
+                圈子消息
+                <span class="message-tag">11</span>
+              </div>
+              <img class="right" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/next4.png" alt="">
+            </div>
+          </van-cell>
+          <van-cell>
+            <div class="list-cell flex_centerY click_active" @click="goBack('system')">
+              <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/xtxx.png" alt="">
+              <div class="center flex_1">
+                系统消息
+                <span class="message-tag">11</span>
+              </div>
+              <img class="right" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/next4.png" alt="">
+            </div>
+          </van-cell>
+        </van-list>
+        <router-view class="flex_1"></router-view>
+        <tabBar tabName="message"></tabBar>
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'index',
+  data () {
+    return {
+      config: {
+        title: '',
+        goBackPath: ''
+      }
+    }
+  },
+  created () {
+    this.init()
+  },
+  methods: {
+    init () {
+      this.topBarConfig = {
+        title: '消息',
+        path: '/dynamic'
+      }
+    },
+    goBack (type) {
+      switch (type) {
+        case 'chat':
+          this.topBarConfig = {
+            title: '聊天消息',
+            path: '/message'
+          }
+          this.$router.push(`/message/${type}`)
+          break
+        case 'circle':
+          this.topBarConfig = {
+            title: '圈子消息',
+            path: '/message'
+          }
+          this.$router.push(`/message/${type}`)
+          break
+        case 'system':
+          this.topBarConfig = {
+            title: '系统消息',
+            path: '/message'
+          }
+          this.$router.push(`/message/${type}`)
+          break
+      }
+    }
+  },
+  watch: {
+    '$route.name': function (val1, val2) {
+      if (val1 === 'Message') {
+        this.topBarConfig = {
+          title: '消息',
+          path: '/dynamic'
+        }
+      }
+    }
+  }
+}
+</script>
+<style lang="scss">
+  .message-page{
+    .van-list{
+      padding: 0 20px;
+      .van-cell{
+        padding: 0;
+      }
+    }
+    .van-nav-bar__title.van-ellipsis{
+      font-size:18px;
+      font-family:PingFangSC-Semibold,PingFang SC;
+      font-weight:600;
+      color:rgba(0,0,0,1);
+    }
+  }
+</style>
+<style scoped lang="scss">
+  .pages{
+    display: flex;
+    flex-direction: column;
+  }
+  .list-cell{
+    height: 60px;
+    .left{
+      width: 36px;
+      height: 36px;
+      transform: translateY(4px);
+    }
+    .center{
+      font-size:16px;
+      font-family:PingFang-SC-Heavy,PingFang-SC;
+      font-weight:800;
+      color:rgba(51,51,51,1);
+      position: relative;
+      box-sizing: border-box;
+      padding: 0 4px;
+      .message-tag{
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 18px;
+        background-color: #F11209;
+        font-size:12px;
+        font-family:PingFangSC-Semibold,PingFang SC;
+        font-weight:600;
+        color:rgba(255,255,255,1);
+        position: absolute;
+        top: 50%;
+        right: 4px;
+        transform: translateY(-50%);
+      }
+    }
+  }
+</style>

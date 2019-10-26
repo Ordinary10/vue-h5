@@ -1,9 +1,9 @@
 <template>
     <div class="tab-bar">
         <div class="tab-item" v-for="(item,index) in tabList" :key="item.path" @click="tabClick(index)">
-            <img :src="item.activeImg" alt="" v-show="tabIndex === index">
-            <img :src="item.img" alt="" v-show="tabIndex !== index">
-            <span class="tab-name" :class="{'active': item.isActive}">{{item.name}}</span>
+            <img :src="item.activeImg" alt="" v-show="tabName === item.name">
+            <img :src="item.img" alt="" v-show="tabName !== item.name">
+            <span class="tab-name" :class="{'active': tabName === item.name}">{{item.text}}</span>
         </div>
     </div>
 </template>
@@ -11,28 +11,31 @@
 <script>
 export default {
   name: 'index',
-  props: ['tabIndex'],
+  props: ['tabName'],
   data () {
     return {
       tabList: [
         {
-          path: '/home',
-          name: '动态',
-          img: '../../../static/images/dt01.png',
-          activeImg: '../../../static/images/dt02.png'
+          path: '/dynamic',
+          name: 'dynamic',
+          text: '动态',
+          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/dt01.png',
+          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/dt02.png'
         },
         {
           path: '/message',
-          name: '消息',
-          img: '../../../static/images/xx01.png',
-          activeImg: '../../../static/images/xx02.png'
+          name: 'message',
+          text: '消息',
+          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/xx01.png',
+          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/xx02.png'
 
         },
         {
           path: '/wode',
-          name: '我的',
-          img: '../../../static/images/wode01.png',
-          activeImg: '../../../static/images/wode02.png'
+          name: 'wode',
+          text: '我的',
+          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/wode01.png',
+          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/wode02.png'
 
         }
       ]
@@ -51,6 +54,7 @@ export default {
 .tab-bar{
     border-top: 1px solid #F1F1F1;
     position: fixed;
+    z-index: 2000;
     left: 0;
     bottom: 0;
     width: 100%;
