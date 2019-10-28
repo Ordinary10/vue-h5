@@ -1,34 +1,40 @@
 <template>
     <div class="pages">
+      <div class="wode-page" v-show="$route.path==='/wode'">
         <img src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/grzx_bg.png" alt="">
         <div class="userInfoCard">
-            <div class="top-info x_box">
-                <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/qzxx.png"/>
-                <div class="center">
-                    王麻子
-                </div>
-                <img class="right" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/next4.png"/>
+          <div class="top-info x_box">
+            <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/qzxx.png"/>
+            <div class="center">
+              王麻子
             </div>
-            <div class="footer-info flex_centerY">
-                <div class="footer-item flex_column">
-                    <span class="number">320</span>
-                    <span class="text">收藏</span>
-                </div>
-                <span class="vertical_short_line"></span>
-                <div class="footer-item flex_column">
-                    <span class="number">320.45</span>
-                    <span class="text">余额</span>
-                </div>
+            <i class="iconfont icon-fanhuicopy right"></i>
+          </div>
+          <div class="footer-info flex_centerY">
+            <div class="footer-item flex_column" @click="$router.push('/wode/collection')">
+              <span class="number">320</span>
+              <span class="text">收藏</span>
             </div>
+            <span class="vertical_short_line"></span>
+            <div class="footer-item flex_column" @click="$router.push('/wode/residual')">
+              <span class="number">320.45</span>
+              <span class="text">余额</span>
+            </div>
+          </div>
         </div>
         <div class="lists">
-            <div class="listItem x_box click_active" v-for="(item,index) in carList" :key="index">
-                <img class="left" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/smrz.png" alt="">
-                <span class="center">{{item.text}}</span>
-                <img class="right" src="https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/next4.png" alt="">
-            </div>
+          <div class="listItem x_box click_active" v-for="(item,index) in carList" :key="index" @click="$router.push(item.goBackPath)">
+            <i class="left iconfont" :class="item.icon"></i>
+            <span class="center">{{item.text}}</span>
+            <i class="iconfont icon-fanhuicopy right"></i>
+          </div>
         </div>
         <tabBar tabName="wode"></tabBar>
+      </div>
+      <div class="wode-page" v-show="$route.path!=='/wode'">
+        <topBar></topBar>
+        <router-view></router-view>
+      </div>
     </div>
 </template>
 
@@ -39,22 +45,34 @@ export default {
     return {
       carList: [
         {
-          text: '实名认证'
+          text: '实名认证',
+          icon: 'icon-shimingrenzheng',
+          goBackPath: '/wode/real-name'
         },
         {
-          text: '我的商机'
+          text: '我的商机',
+          icon: 'icon-wodeshangji',
+          goBackPath: '/wode/businessOpportunities'
         },
         {
-          text: '我的人脉'
+          text: '我的人脉',
+          icon: 'icon-woderenmai',
+          goBackPath: '/wode/contacts'
         },
         {
-          text: '我的话题'
+          text: '我的话题',
+          icon: 'icon-wodehuati',
+          goBackPath: '/wode/topic'
         },
         {
-          text: '交易密码'
+          text: '交易密码',
+          icon: 'icon-jiaoyimima',
+          goBackPath: '/wode/change-password'
         },
         {
-          text: '设置'
+          text: '设置',
+          icon: 'icon-shezhi',
+          goBackPath: '/wode/set-up'
         }
       ]
     }
@@ -63,6 +81,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+    .wode-page{
+      height: 100%;
+      position: relative;
+    }
     .userInfoCard{
         position: absolute;
         left: 16px;
@@ -76,7 +98,7 @@ export default {
         padding: 14px 10px 0;
         box-sizing: border-box;
         .top-info{
-            border-bottom: 1px solid #F1F1F1;
+            border-bottom: 1px solid $borerColor;
             .left{
                 width: 60px;
                 height: 60px;
@@ -87,6 +109,9 @@ export default {
                 font-weight:400;
                 color:rgba(17,17,17,1);
             }
+          .right{
+            color: $retrunIconColor;
+          }
         }
         .footer-info{
             width: 100%;
@@ -115,15 +140,18 @@ export default {
             }
         }
     }
-.lists{
+    .lists{
     padding: 0 20px;
     margin-top: 50px;
     .listItem{
         height: 56px;
-        border-bottom: 1px solid #F1F1F1;
-        img{
-            width: 18px;
-            height: 18px;
+        border-bottom: 1px solid $borerColor;
+        .left{
+          color: $leftIconColor;
+          font-size: 18px;
+        }
+        .right{
+          color: $retrunIconColor;
         }
         .center{
             padding: 0 12px;

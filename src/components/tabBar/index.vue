@@ -1,8 +1,7 @@
 <template>
     <div class="tab-bar">
         <div class="tab-item" v-for="(item,index) in tabList" :key="item.path" @click="tabClick(index)">
-            <img :src="item.activeImg" alt="" v-show="tabName === item.name">
-            <img :src="item.img" alt="" v-show="tabName !== item.name">
+            <i class="iconfont" :class="[item.icon,{activeIcon: tabName === item.name}]"></i>
             <span class="tab-name" :class="{'active': tabName === item.name}">{{item.text}}</span>
         </div>
     </div>
@@ -19,24 +18,19 @@ export default {
           path: '/dynamic',
           name: 'dynamic',
           text: '动态',
-          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/dt01.png',
-          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/dt02.png'
+          icon: 'icon-dongtai'
         },
         {
           path: '/message',
           name: 'message',
           text: '消息',
-          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/xx01.png',
-          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/xx02.png'
-
+          icon: 'icon-xiaoxi'
         },
         {
           path: '/wode',
           name: 'wode',
           text: '我的',
-          img: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/wode01.png',
-          activeImg: 'https://ordinary10.oss-cn-hangzhou.aliyuncs.com/zbzyImages/wode02.png'
-
+          icon: 'icon-wode'
         }
       ]
     }
@@ -51,6 +45,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  /*:class样式*/
+  .activeIcon{
+    color: #407BFF !important;
+  }
 .tab-bar{
     border-top: 1px solid #F1F1F1;
     position: fixed;
@@ -71,9 +69,9 @@ export default {
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        img{
-            width: 26px;
-            height: 26px;
+        .iconfont{
+          color: #C5D0E4;
+          font-size: 26px;
         }
         .tab-name{
             width:48px;
